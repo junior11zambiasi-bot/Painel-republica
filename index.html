@@ -33,13 +33,13 @@ button,input,select,textarea{font-family:inherit;font-size:14px}
 input,select,textarea{color:var(--text);background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius-xs);padding:9px 12px;outline:none;transition:border .15s,box-shadow .15s;width:100%}
 input:focus,select:focus,textarea:focus{border-color:var(--g600);box-shadow:0 0 0 3px rgba(40,167,102,.12)}
 /* ── TOPBAR ─────────────────────────────────────────── */
-.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar);background:var(--g800);display:flex;align-items:center;padding:0 16px;gap:12px;z-index:200}
+.topbar{position:fixed;top:0;left:0;right:0;height:calc(var(--topbar) + env(safe-area-inset-top,0px));background:var(--g800);display:flex;align-items:center;padding:env(safe-area-inset-top,0px) 16px 0 16px;gap:12px;z-index:200}
 .topbar-logo{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.3px;white-space:nowrap}
 .topbar-logo span{color:var(--g400)}
 .topbar-company{font-size:12px;color:rgba(255,255,255,.55);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .topbar-actions{display:flex;align-items:center;gap:8px}
 /* ── BOTTOM NAV (mobile) ────────────────────────────── */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--sidebar);background:var(--card);border-top:1px solid var(--border);display:flex;z-index:200;safe-area-inset-bottom:env(safe-area-inset-bottom)}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--sidebar) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:var(--card);border-top:1px solid var(--border);display:flex;z-index:200}
 .bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--muted);font-size:10px;font-weight:600;border:none;background:none;transition:color .15s;padding:env(safe-area-inset-bottom,0) 0 0}
 .bnav-item.active{color:var(--g700)}
 .bnav-icon{font-size:20px;line-height:1}
@@ -54,7 +54,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--g600);box-shadow:0 0 
 .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:99;display:none}
 .sidebar-overlay.show{display:block}
 /* ── MAIN ───────────────────────────────────────────── */
-.main{padding-top:var(--topbar);padding-bottom:calc(var(--sidebar) + env(safe-area-inset-bottom,0px));min-height:100vh}
+.main{padding-top:calc(var(--topbar) + env(safe-area-inset-top,0px));padding-bottom:calc(var(--sidebar) + env(safe-area-inset-bottom,0px));min-height:100vh}
 .page{display:none;padding:16px}
 .page.active{display:block}
 /* ── CARDS ──────────────────────────────────────────── */
@@ -173,7 +173,7 @@ tr:last-child td{border-bottom:none}
   .modal{border-radius:var(--radius)}
 }
 @media(max-width:639px){
-  .sidebar{top:0;height:100%;width:80%;max-width:280px}
+  .sidebar{top:calc(var(--topbar) + env(safe-area-inset-top,0px));bottom:calc(var(--sidebar) + env(safe-area-inset-bottom,0px));height:auto;width:80%;max-width:280px}
   .kpi-grid{grid-template-columns:1fr 1fr}
   .hide-mobile{display:none!important}
   .topbar-company{display:none}
@@ -1263,6 +1263,7 @@ renderDash();
 #loginErro{color:var(--red);font-size:13px;margin-top:10px;min-height:16px}
 #nuvemStatus{position:fixed;right:10px;bottom:8px;z-index:50;font-size:11px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 6px 3px 10px;display:none;align-items:center;gap:8px}
 #nuvemStatus button{border:0;background:transparent;color:var(--red);font-size:11px;font-weight:700;cursor:pointer}
+@media(max-width:639px){#nuvemStatus{bottom:calc(var(--sidebar) + env(safe-area-inset-bottom,0px) + 8px)}}
 </style>
 <div id="loginNuvem">
   <div class="cx">
