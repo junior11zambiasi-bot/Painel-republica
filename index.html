@@ -117,7 +117,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--g600);box-shadow:0 0 
 /* ── FILTER BAR ─────────────────────────────────────── */
 .filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .filter-bar select,.filter-bar input{width:auto;flex:1;min-width:100px;font-size:13px}
-.period-tabs{display:flex;background:var(--border);padding:3px;border-radius:var(--radius-xs);gap:2px;flex-shrink:0}
+.period-tabs{display:flex;background:var(--border);padding:3px;border-radius:var(--radius-xs);gap:2px;flex-shrink:0;max-width:100%;overflow-x:auto}
+html,body{max-width:100%;overflow-x:hidden}
 .ptab{padding:6px 12px;border-radius:var(--radius-xs);font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);border:none;background:transparent;transition:all .15s}
 .ptab.active{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
 /* ── PROGRESS ───────────────────────────────────────── */
@@ -174,7 +175,10 @@ tr:last-child td{border-bottom:none}
 }
 @media(max-width:639px){
   .sidebar{top:calc(var(--topbar) + env(safe-area-inset-top,0px));bottom:calc(var(--sidebar) + env(safe-area-inset-bottom,0px));height:auto;width:80%;max-width:280px}
-  .kpi-grid{grid-template-columns:1fr 1fr}
+  .kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi{min-width:0}
+  .period-tabs{max-width:calc(100vw - 32px)}
+  .ptab{padding:6px 7px;font-size:11px;white-space:nowrap}
   .hide-mobile{display:none!important}
   .topbar-company{display:none}
 }
