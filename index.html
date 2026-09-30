@@ -179,6 +179,25 @@ tr:last-child td{border-bottom:none}
   .kpi{min-width:0}
   .period-tabs{max-width:calc(100vw - 32px)}
   .ptab{padding:6px 7px;font-size:11px;white-space:nowrap}
+  /* A Receber / A Pagar no celular: cartões em vez de tabela larga */
+  #arKpis,#apKpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #arKpis .kpi:nth-child(3),#apKpis .kpi:nth-child(3){grid-column:1/-1}
+  #arKpis .kpi-value,#apKpis .kpi-value{font-size:19px}
+  #page-areceber table,#page-apagar table,#arTable,#apTable{display:block;width:100%}
+  #page-areceber thead,#page-apagar thead{display:none}
+  #arTable tr,#apTable tr{display:grid;grid-template-columns:1fr auto auto;grid-template-areas:"cat cat val" "dat pag sta" "dtr dtr act";gap:4px 10px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border)}
+  #arTable tr:last-child,#apTable tr:last-child{border-bottom:none}
+  #arTable td,#apTable td{padding:0;border:none;white-space:normal}
+  #arTable td:nth-child(1),#apTable td:nth-child(1){grid-area:dat;font-size:12px;color:var(--muted)}
+  #arTable td:nth-child(2),#apTable td:nth-child(2){grid-area:cat;font-size:14px;font-weight:700}
+  #arTable td:nth-child(3),#apTable td:nth-child(3){grid-area:pag}
+  #arTable td:nth-child(4),#apTable td:nth-child(4){grid-area:val;justify-self:end;font-size:15px}
+  #arTable td:nth-child(5),#apTable td:nth-child(5){grid-area:dtr}
+  #arTable td:nth-child(6),#apTable td:nth-child(6){grid-area:sta;justify-self:end}
+  #arTable td:nth-child(7),#apTable td:nth-child(7){grid-area:act;justify-self:end}
+  #arTable td:nth-child(5)::before{content:"Recebimento: "}
+  #apTable td:nth-child(5)::before{content:"Pagamento: "}
+  #arTable td[colspan],#apTable td[colspan]{grid-area:auto;grid-column:1/-1}
   .hide-mobile{display:none!important}
   .topbar-company{display:none}
 }
