@@ -948,16 +948,16 @@ function renderComp(){
   const cRow=(titulo,vA,vB,fmt,inv)=>{
     const d=vB?((vA-vB)/Math.abs(vB)*100).toFixed(1):0;
     const ok=inv?(vA<vB):(vA>=vB);
-    return`<div class="kpi">
-      <div class="kpi-label">${titulo}</div>
-      <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-top:6px">
-        <div><div style="font-size:10px;color:var(--g800);font-weight:600;margin-bottom:2px">A</div><div style="font-size:16px;font-weight:800;color:var(--g800)">${fmt(vA)}</div></div>
-        <div style="text-align:center"><span style="background:${ok?'var(--g100)':'var(--red-bg)'};color:${ok?'var(--g800)':'var(--red)'};padding:3px 8px;border-radius:100px;font-size:11px;font-weight:700">${d>=0?'+':''}${d}%</span></div>
-        <div style="text-align:right"><div style="font-size:10px;color:var(--red);font-weight:600;margin-bottom:2px">B</div><div style="font-size:16px;font-weight:800;color:var(--red)">${fmt(vB)}</div></div>
+    return`<div class="kpi" style="min-width:0">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px">
+        <div class="kpi-label" style="margin:0">${titulo}</div>
+        <span style="background:${ok?'var(--g100)':'var(--red-bg)'};color:${ok?'var(--g800)':'var(--red)'};padding:3px 8px;border-radius:100px;font-size:11px;font-weight:700;white-space:nowrap">${d>=0?'+':''}${d}%</span>
       </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="font-size:11px;color:var(--g800);font-weight:700">A</span><span style="font-size:17px;font-weight:800;color:var(--g800);white-space:nowrap">${fmt(vA)}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:6px 0 0"><span style="font-size:11px;color:var(--red);font-weight:700">B</span><span style="font-size:17px;font-weight:800;color:var(--red);white-space:nowrap">${fmt(vB)}</span></div>
     </div>`;
   };
-  cc.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+  cc.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">
     ${cRow('📈 Receita',rA,rB,brl,false)}
     ${cRow('📉 Despesa',dA,dB,brl,true)}
     ${cRow('💰 Resultado',rA-dA,rB-dB,brl,false)}
